@@ -5,14 +5,13 @@
   transition: all 0.35s ease-in-out;
 }
 body {
-font-family: 'Roboto';
+  font-family: "Roboto";
   font-size: 0.875rem;
   opacity: 1;
-  overflow-y: scroll;
+  width: 100%;
   margin: 0;
   background-color: #f0f2ff;
 }
-
 
 .avatar {
   width: 40px;
@@ -40,7 +39,7 @@ li {
   height: 50px;
   background-color: #f8f9fa; /* Bạn có thể thay đổi màu này theo ý muốn */
   cursor: pointer;
- color: #6B5BF9;
+  color: #6b5bf9;
 }
 .siderbar-item {
   margin-top: 20px;
@@ -84,4 +83,9 @@ li {
 }
 .card-employee {
   background-color: #fffefa;
+}
+.order-card:hover {
+  background-color: #6354e6;
+  color: #f0f2ff;
+  transform: translateY(-10px);
 }

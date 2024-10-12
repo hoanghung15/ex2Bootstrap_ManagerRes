@@ -1,0 +1,30 @@
+table.table tr th,
+table.table tr td {
+  vertical-align: middle;
+}
+table .date {
+  color: #c1c1c1;
+}
+.table-hover tbody tr:hover {
+  background-color: #6B5BF9; 
+  color: #ffffff;
+}
+
+.table-hover tbody tr:hover a,
+.table-hover tbody tr:hover .fa-solid,
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th,
+.table-hover tbody tr:hover .fw-bold {
+  color: #ffffff !important; 
+}
+.table-hover tbody tr:hover .text-bg-success {
+  background-color: #B0A7FF  !important; 
+  border: 1px solid #ffffff; 
+  color: #ffffff !important; 
+}
+.custom-border-right {
+  border-right: 1px solid #F1F1F1; 
+}
+.test{
+  align-items: center;
+}

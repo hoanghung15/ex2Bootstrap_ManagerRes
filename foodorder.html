@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/ae360af17e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="firebase.js" class="" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Oriya&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+    <!-- chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.js"></script>
+    
+  </head>
+  <body>
+    <div class="wrapper d-flex w-100">
+      <aside id="sidebar" class="js-sidebar">
+        <div class="h-100 pt-4">
+          <div class="px-5 pt-3 text-white">
+            <a href="" class="navbar-brand fw-bold fs-4">FoodMeal</a>
+          </div>
+          <ul class="sidebar-nav">
+            <li class="siderbar-item">
+              <a href="index.html" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-list pe-4"></i>
+                Dashboard
+              </a>
+            </li>
+            <li class="siderbar-item">
+              <a href="" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-bowl-food pe-4"></i>
+                Menu
+              </a>
+            </li>
+            <li class="siderbar-item">
+              <a href="" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-truck-fast pe-4"></i>
+                Food Order
+              </a>
+            </li>
+            <li class="siderbar-item mt-4">
+              <a href="" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-user pe-4"></i>
+                Employee
+              </a>
+            </li>
+            <li class="siderbar-item mt-4">
+              <a href="bills.html" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-file-invoice-dollar pe-4"></i>
+                Bills
+              </a>
+            </li>
+            <li class="siderbar-item">
+              <a
+                href=""
+                class="sidebar-link fw-medium collapsed position-relative d-block"
+                data-bs-target="#pages"
+                data-bs-toggle="collapse"
+              >
+                <i class="fa-sharp fa-solid fa-chart-simple pe-4 py-3"></i>
+                Statistic
+              </a>
+              <ul
+                class="sidebar-dropdown collapse"
+                id="pages"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item mt-2">
+                  <a href="" class="sidebar-link fw-medium">
+                    <i class="fa-solid fa-money-bill-trend-up pe-3"></i>Revenue
+                  </a>
+                </li>
+                <li class="sidebar-item mt-4">
+                  <a href="" class="sidebar-link fw-medium">
+                    <i class="fa-solid fa-medal pe-3"></i> Selling</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="siderbar-item-setting">
+              <a href="" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-gear pe-4"></i>
+                Setting
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <div
+        class="main px-4 d-flex flex-column min-vh-100 w-100 overflow-hidden bg-light transition-all"
+      >
+      <div class="w-100 d-flex justify-content-between  border-bottom">
+        <div class="navbar ">
+          <button class="btn" id="sidebar-toggle" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class=" d-flex align-items-center">
+          <div class="px-5">
+            <i class="fa-regular fa-bell " style="scale: 130%;">
+              <span class="position-absolute top-0 start-50 translate-middle p-2 bg-danger border border-light rounded-circle" style="scale: 50%;">
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </i>
+          </div>
+
+          <img src="https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109.jpg
+          " alt="" class="avatar rounded-5">
+        </div>
+      </div>
+      <div class="row mt-3 ">
+        <!-- left=t div -->
+        <div class="col-12 col-md-9 ">
+            <p class="mx-2 fw-bold">
+                Food Order
+            </p>
+            <div class="w-100 d-flex justify-content-between align-items-center shadow-sm rounded-4 bg-white" style="height: 60px;" >
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <div class=""></div><i class="fa-solid fa-arrow-down-a-z"></i>
+                    </a>
+                  
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Lastest</a></li>
+                      <li><a class="dropdown-item" href="#">Earliest</a></li>
+                      
+                    </ul>
+                  </div>
+                <div class="d-flex justify-content-between">
+                    <div class="pe-4">
+                      <input type="date" class="px-2 border rounded-2" name="" id="" style="height: 40px ;width: 200px;;">
+                    </div>
+                    <div class="pe-2">
+                      <label for="" class="pe-4">To</label>
+                      <input type="date" class="px-2 border rounded-2" name="" id="" style="height: 40px ;width: 200px;;">
+                    </div>
+                    <div class="pe-2">
+                        <button type="button" class="btn btn-primary">Find</button>
+                    </div>
+                    
+                </div>           
+            </div>
+            <div class="d-flex flex-wrap mt-3">
+                <div class="col-12 col-md-4 px-2  mt-lg-0 mt-4">
+                    <div class="rounded-4 px-4 shadow order-card">
+                        <div class="w-100 text-center border-bottom pt-4">
+                            <p class="fw-bold">Order #1</p>
+                            <p class="" style="font-size: 12px;" >Now 11,2021 18:38 PM</p>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom">
+                            <p class="fw-bold">
+                                Fast Food Resto
+                            </p>
+                            <p class=""><i class="fa-solid fa-star pe-2" style="color:#FFD429"></i>5 Reviews</p>
+                        </div>
+                        <div class="w-100 mt-1 border-bottom" style="font-size: 12px;">
+                            <div class="d-flex justify-content-between">
+                                <p class="">Delivery</p>
+                                <p class="fw-bold">10m</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="">Distance</p>
+                                <p class="fw-bold">2.5 Km</p>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom pb-2">
+                            <p class="fw-bold">Order Menu</p>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center mt-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-between mt-2">
+                            <p class="fw-bold">Total:</p>
+                            <p class="fw-bold">$5.0</p>
+                        </div>
+                        <div class="w-100 d-flex justify-content-center pb-4">
+                            <button type="button" class="btn btn-success rounded-3 w-100" style="font-size: 12px;">Success</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 px-2 mt-lg-0 mt-4 ">
+                    <div class="rounded-4 px-4 shadow order-card">
+                        <div class="w-100 text-center border-bottom pt-4">
+                            <p class="fw-bold">Order #1</p>
+                            <p class="" style="font-size: 12px;" >Now 11,2021 18:38 PM</p>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom">
+                            <p class="fw-bold">
+                                Fast Food Resto
+                            </p>
+                            <p class=""><i class="fa-solid fa-star pe-2" style="color:#FFD429"></i>5 Reviews</p>
+                        </div>
+                        <div class="w-100 mt-1 border-bottom" style="font-size: 12px;">
+                            <div class="d-flex justify-content-between">
+                                <p class="">Delivery</p>
+                                <p class="fw-bold">10m</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="">Distance</p>
+                                <p class="fw-bold">2.5 Km</p>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom pb-2">
+                            <p class="fw-bold">Order Menu</p>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center mt-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-between mt-2">
+                            <p class="fw-bold">Total:</p>
+                            <p class="fw-bold">$5.0</p>
+                        </div>
+                        <div class="w-100 d-flex justify-content-center pb-4">
+                            <button type="button" class="btn btn-success rounded-3 w-100" style="font-size: 12px;">Success</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 px-2 mt-lg-0 mt-4">
+                    <div class="rounded-4 px-4 shadow order-card">
+                        <div class="w-100 text-center border-bottom pt-4">
+                            <p class="fw-bold">Order #1</p>
+                            <p class="" style="font-size: 12px;" >Now 11,2021 18:38 PM</p>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom">
+                            <p class="fw-bold">
+                                Fast Food Resto
+                            </p>
+                            <p class=""><i class="fa-solid fa-star pe-2" style="color:#FFD429"></i>5 Reviews</p>
+                        </div>
+                        <div class="w-100 mt-1 border-bottom" style="font-size: 12px;">
+                            <div class="d-flex justify-content-between">
+                                <p class="">Delivery</p>
+                                <p class="fw-bold">10m</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="">Distance</p>
+                                <p class="fw-bold">2.5 Km</p>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom pb-2">
+                            <p class="fw-bold">Order Menu</p>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center mt-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-between mt-2">
+                            <p class="fw-bold">Total:</p>
+                            <p class="fw-bold">$5.0</p>
+                        </div>
+                        <div class="w-100 d-flex justify-content-center pb-4">
+                            <button type="button" class="btn btn-success rounded-3 w-100" style="font-size: 12px;">Success</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 px-2 mt-4 ">
+                    <div class="rounded-4 px-4 shadow order-card">
+                        <div class="w-100 text-center border-bottom pt-4">
+                            <p class="fw-bold">Order #1</p>
+                            <p class="" style="font-size: 12px;" >Now 11,2021 18:38 PM</p>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom">
+                            <p class="fw-bold">
+                                Fast Food Resto
+                            </p>
+                            <p class=""><i class="fa-solid fa-star pe-2" style="color:#FFD429"></i>5 Reviews</p>
+                        </div>
+                        <div class="w-100 mt-1 border-bottom" style="font-size: 12px;">
+                            <div class="d-flex justify-content-between">
+                                <p class="">Delivery</p>
+                                <p class="fw-bold">10m</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="">Distance</p>
+                                <p class="fw-bold">2.5 Km</p>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom pb-2">
+                            <p class="fw-bold">Order Menu</p>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center mt-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-between mt-2">
+                            <p class="fw-bold">Total:</p>
+                            <p class="fw-bold">$5.0</p>
+                        </div>
+                        <div class="w-100 d-flex justify-content-center pb-4">
+                            <button type="button" class="btn btn-success rounded-3 w-100" style="font-size: 12px;">Success</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 px-2  mt-4 ">
+                    <div class="rounded-4 px-4 shadow order-card">
+                        <div class="w-100 text-center border-bottom pt-4">
+                            <p class="fw-bold">Order #1</p>
+                            <p class="" style="font-size: 12px;" >Now 11,2021 18:38 PM</p>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom">
+                            <p class="fw-bold">
+                                Fast Food Resto
+                            </p>
+                            <p class=""><i class="fa-solid fa-star pe-2" style="color:#FFD429"></i>5 Reviews</p>
+                        </div>
+                        <div class="w-100 mt-1 border-bottom" style="font-size: 12px;">
+                            <div class="d-flex justify-content-between">
+                                <p class="">Delivery</p>
+                                <p class="fw-bold">10m</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="">Distance</p>
+                                <p class="fw-bold">2.5 Km</p>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom pb-2">
+                            <p class="fw-bold">Order Menu</p>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center mt-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-between mt-2">
+                            <p class="fw-bold">Total:</p>
+                            <p class="fw-bold">$5.0</p>
+                        </div>
+                        <div class="w-100 d-flex justify-content-center pb-4">
+                            <button type="button" class="btn btn-success rounded-3 w-100" style="font-size: 12px;">Success</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 px-2  mt-4 ">
+                    <div class="rounded-4 px-4 shadow order-card">
+                        <div class="w-100 text-center border-bottom pt-4">
+                            <p class="fw-bold">Order #1</p>
+                            <p class="" style="font-size: 12px;" >Now 11,2021 18:38 PM</p>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom">
+                            <p class="fw-bold">
+                                Fast Food Resto
+                            </p>
+                            <p class=""><i class="fa-solid fa-star pe-2" style="color:#FFD429"></i>5 Reviews</p>
+                        </div>
+                        <div class="w-100 mt-1 border-bottom" style="font-size: 12px;">
+                            <div class="d-flex justify-content-between">
+                                <p class="">Delivery</p>
+                                <p class="fw-bold">10m</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="">Distance</p>
+                                <p class="fw-bold">2.5 Km</p>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-2 border-bottom pb-2">
+                            <p class="fw-bold">Order Menu</p>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center mt-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%2016%20(2).svg?alt=media&token=19af8ba5-8e37-4341-8317-e92470f597a2" alt="" class="rounded-2">
+                                    <p class="mb-0 ms-2">x1</p>
+                                    <p class="mb-0 ms-2">Cheese Humber</p>
+                                </div>
+                                <p class="mb-0 fw-bold">$2.5</p>
+                            </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-between mt-2">
+                            <p class="fw-bold">Total:</p>
+                            <p class="fw-bold">$5.0</p>
+                        </div>
+                        <div class="w-100 d-flex justify-content-center pb-4">
+                            <button type="button" class="btn btn-success rounded-3 w-100" style="font-size: 12px;">Success</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <!-- right div -->
+          <div class="col-12 col-md-3 mt-5 mt-lg-0">
+            <h6 class="fw-bold">Address</h6>
+            <div class="rounded-4 shadow bg-white mt-4 p-4 ">
+                <p class="text-secondary">Your Address</p>
+                <div class="w-100">
+                    <p class="fw-bold" style="color:#6B5BF9;"><i class="fa-solid fa-location-dot pe-1" style="color: #6B5BF9;"></i> Elm Street, 23</p>
+                    <div class="">
+                        <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime temporibus rem excepturi</p>
+                    </div>
+                    <div class="w-100 d-flex">
+                        <button type="button" class="btn btn-primary" style="font-size: 12px;">Add detail</button>
+                        <button type="button" class="btn btn-outline-primary mx-3" style="font-size: 12px;">Add note</button>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-4 w-100 bg-light shadow mt-4 p-4">
+                <p class="fw-bold">Google Map</p>
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5893.7902667506805!2d-71.11451528987902!3d42.38738039605606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3778d2768de75%3A0x16e844206533f347!2s23%20Elm%20St%2C%20Somerville%2C%20MA%2002143%2C%20Hoa%20K%E1%BB%B3!5e0!3m2!1svi!2s!4v1728580170804!5m2!1svi!2s" frameborder="0" class="w-100"></iframe>  
+            </div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

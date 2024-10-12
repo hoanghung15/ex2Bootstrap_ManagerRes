@@ -42,25 +42,25 @@
               </a>
             </li>
             <li class="siderbar-item">
-              <a href="" class="sidebar-link fw-medium">
+              <a href="menu.html" class="sidebar-link fw-medium">
                 <i class="fa-solid fa-bowl-food pe-4"></i>
                 Menu
               </a>
             </li>
             <li class="siderbar-item">
-              <a href="" class="sidebar-link fw-medium">
+              <a href="foodorder.html" class="sidebar-link fw-medium">
                 <i class="fa-solid fa-truck-fast pe-4"></i>
                 Food Order
               </a>
             </li>
             <li class="siderbar-item mt-4">
-              <a href="" class="sidebar-link fw-medium">
+              <a href="employee.html" class="sidebar-link fw-medium">
                 <i class="fa-solid fa-user pe-4"></i>
                 Employee
               </a>
             </li>
             <li class="siderbar-item mt-4">
-              <a href="" class="sidebar-link fw-medium">
+              <a href="bills.html" class="sidebar-link fw-medium">
                 <i class="fa-solid fa-file-invoice-dollar pe-4"></i>
                 Bills
               </a>
@@ -109,20 +109,29 @@
             <span class="navbar-toggler-icon"></span>
         </button>
       </nav> -->
-      <div class="w-100 d-flex justify-content-between">
-        <div class="navbar">
+      <div class="w-100 d-flex justify-content-between  border-bottom">
+        <div class="navbar ">
           <button class="btn" id="sidebar-toggle" type="button">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-        <div class="">
+        <div class=" d-flex align-items-center">
+          <div class="px-5">
+            <i class="fa-regular fa-bell " style="scale: 130%;">
+              <span class="position-absolute top-0 start-50 translate-middle p-2 bg-danger border border-light rounded-circle" style="scale: 50%;">
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </i>
+          </div>
+
           <img src="https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109.jpg
-          " alt="" class="">
+          " alt="" class="avatar rounded-5">
         </div>
       </div>
       <div class="row mt-3 ">
           <div class="col-12 col-md-8 ">
-            <div class=" card shadow   border-0 rounded-4">
+            <h6 class="fw-bold">Dashboard</h6>
+            <div class=" card shadow  mt-4 border-0 rounded-4">
               <div class="row g-0 w-100 d-flex justify-content-between">
                 <div class="col-6 col-md-8 d-flex align-items-center">
                   <div class="p-4 m-1 ">
@@ -135,7 +144,8 @@
                 </div>
               </div>
             </div>
-            <div class="row g-0 w-100 mt-5 justify-content-between">
+            <h6 class="fw-bold mt-5">Shortcut</h6>
+            <div class="row g-0 w-100 mt-4 justify-content-between">
               <div class="col-12  card-employee col-md-5  rounded-4  shadow">
                 <div class="w-100 d-flex justify-content-center align-items-center ">
                   <img src="https://firebasestorage.googleapis.com/v0/b/ex2bootstrap-d216c.appspot.com/o/image%208.svg?alt=media&token=6bd07d02-39ca-420f-b8c7-f04df06a7c98" alt="" class="mt-md-4">
@@ -190,21 +200,21 @@
             </div>
           </div>
           <div class="col-12 col-md-4 rounded-4 mt-5 mt-lg-0">
-            <div class="col-12 bg-white rounded-4 p-4 shadow ">
+            <h6 class="fw-bold">Statistic</h6>
+            <div class="col-12  mt-4 bg-white rounded-4 p-4 shadow ">
               <p class="fw-bold">Quarterly revenue</p>
               <div class=""><canvas id="myChart"></canvas></div>
               
             </div>
             <div class="col-12 bg-white rounded-4 p-4 shadow mt-5 mt-lg-4">
               <p class="fw-bold">Quarterly revenue</p>
-              <div class=""> <canvas id="chart2"></canvas></div>
-             
-              
+              <div class=""> <canvas id="chart2"></canvas></div>   
             </div>
            
           
           
           </div>
+          
          
       </div>
     </div>
