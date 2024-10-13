@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bootstrap Admin Dashboard</title>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+        />
+        <script
+          src="https://kit.fontawesome.com/ae360af17e.js"
+          crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="firebase.js" class="" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="script.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Oriya&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+        <!-- chart -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="chart.js"></script>
+        
+      </head>
+  <body>
+    <div class="wrapper d-flex w-100">
+      <aside id="sidebar" class="js-sidebar">
+        <div class="h-100 pt-4">
+          <div class="px-5 pt-3 text-white">
+            <a href="" class="navbar-brand fw-bold fs-4">FoodMeal</a>
+          </div>
+          <ul class="sidebar-nav">
+            <li class="siderbar-item">
+              <a href="index.html" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-list pe-4"></i>
+                Dashboard
+              </a>
+            </li>
+            <li class="siderbar-item">
+              <a href="menu.html" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-bowl-food pe-4"></i>
+                Menu
+              </a>
+            </li>
+            <li class="siderbar-item">
+              <a href="foodorder.html" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-truck-fast pe-4"></i>
+                Food Order
+              </a>
+            </li>
+            <li class="siderbar-item mt-4">
+              <a href="employee.html" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-user pe-4"></i>
+                Employee
+              </a>
+            </li>
+            <li class="siderbar-item mt-4">
+              <a href="bills.html" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-file-invoice-dollar pe-4"></i>
+                Bills
+              </a>
+            </li>
+            <li class="siderbar-item">
+              <a
+                href="statistic.html"
+                class="sidebar-link fw-medium collapsed position-relative d-block"
+                data-bs-target="#pages"
+                data-bs-toggle="collapse"
+              >
+                <i class="fa-sharp fa-solid fa-chart-simple pe-4 py-3"></i>
+                Statistic
+              </a>
+              <ul
+                class="sidebar-dropdown collapse"
+                id="pages"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item mt-2">
+                  <a href="statistic.html" class="sidebar-link fw-medium">
+                    <i class="fa-solid fa-money-bill-trend-up pe-3"></i>Revenue
+                  </a>
+                </li>
+                <li class="sidebar-item mt-4">
+                  <a href="" class="sidebar-link fw-medium">
+                    <i class="fa-solid fa-medal pe-3"></i> Selling</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="siderbar-item-setting">
+              <a href="" class="sidebar-link fw-medium">
+                <i class="fa-solid fa-gear pe-4"></i>
+                Setting
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <div
+        class="main px-4 d-flex flex-column min-vh-100 w-100 overflow-hidden bg-light transition-all"
+      >
+      <!-- <nav class="navbar navbar-expand px-3 border-bottom">
+        <button class="btn" id="sidebar-toggle" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav> -->
+      <div class="w-100 d-flex justify-content-between  border-bottom">
+        <div class="navbar ">
+          <button class="btn" id="sidebar-toggle" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class=" d-flex align-items-center">
+          <div class="px-5">
+            <i class="fa-regular fa-bell " style="scale: 130%;">
+              <span class="position-absolute top-0 start-50 translate-middle p-2 bg-danger border border-light rounded-circle" style="scale: 50%;">
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </i>
+          </div>
+
+          <img src="https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109.jpg
+          " alt="" class="avatar rounded-5">
+        </div>
+      </div>
+      <div class="row mt-3 ">
+        <h6 class="fw-bold">Statistic</h6>
+        <div class="w-100 row px-4">
+            <div class="col-3 ">
+                <div class="shadow rounded-4 p-4">
+                    <h6 class="mb-0" style="font-size: 12px;">Total Revenue</h6>
+                    <h5 class="fw-bold mb-0 mt-3" style="font-size: 24px;">$10000</h5>
+                    <p class="text-secondary mb-0 mt-1" tyle="font-size: 12px;">300 Orders</p>
+                </div>
+            </div>
+            <div class="col-3 ">
+                <div class="shadow rounded-4 p-4">
+                    <h6 class="mb-0" style="font-size: 12px;">Order Revenue</h6>
+                    <h5 class="fw-bold mb-0 mt-3" style="font-size: 24px;">$3000</h5>
+                    <p class="text-secondary mb-0 mt-1" tyle="font-size: 12px;">100 Orders</p>
+                </div>
+            </div>
+            <div class="col-3 ">
+                <div class="shadow rounded-4 p-4">
+                    <h6 class="mb-0" style="font-size: 12px;">Take away</h6>
+                    <h5 class="fw-bold mb-0 mt-3" style="font-size: 24px;">$3000</h5>
+                    <p class="text-secondary mb-0 mt-1" tyle="font-size: 12px;">100 Orders</p>
+                </div>
+            </div>
+            <div class="col-3 ">
+                <div class="shadow rounded-4 p-4">
+                    <h6 class="mb-0" style="font-size: 12px;">Dine in</h6>
+                    <h5 class="fw-bold mb-0 mt-3" style="font-size: 24px;">$3000</h5>
+                    <p class="text-secondary mb-0 mt-1" style="font-size: 12px;">100 Orders</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-12  mt-4 ">
+            <h6 class="fw-bold">Total Revenue</h6>
+            <div class="col-12  bg-white rounded-4 p-4 shadow ">
+              <div class=""><canvas id="chart3"></canvas></div>
+            </div>
+            <h6 class="fw-bold mt-4">Top Selling Food</h6>
+            <div class="w-100 col-12 px-4 py-2 rounded-4 shadow" >
+              <table class="table table-hover mt-4 ">
+                <thead></thead>
+                <tbody class="">
+                  <tr class="">
+                    <td class="fw-bold">Cheese Burger</td>
+                    <td> <p class="text-secondary">Prices: $5</p></td>
+                    <td><p class="text-secondary">QTY: 20</p></td>
+                    <td ><p class="fw-bold">$100</p></td>
+                  </tr>
+                  <tr class="">
+                    <td class="fw-bold">Cheese Burger</td>
+                    <td> <p class="text-secondary">Prices: $5</p></td>
+                    <td><p class="text-secondary">QTY: 20</p></td>
+                    <td ><p class="fw-bold">$100</p></td>
+                  </tr>
+                  <tr class="">
+                    <td class="fw-bold">Cheese Burger</td>
+                    <td> <p class="text-secondary">Prices: $5</p></td>
+                    <td><p class="text-secondary">QTY: 20</p></td>
+                    <td ><p class="fw-bold">$100</p></td>
+                  </tr>
+                  <tr class="">
+                    <td class="fw-bold">Cheese Burger</td>
+                    <td> <p class="text-secondary">Prices: $5</p></td>
+                    <td><p class="text-secondary">QTY: 20</p></td>
+                    <td ><p class="fw-bold">$100</p></td>
+                  </tr>
+                  <tr class="">
+                    <td class="fw-bold">Cheese Burger</td>
+                    <td> <p class="text-secondary">Prices: $5</p></td>
+                    <td><p class="text-secondary">QTY: 20</p></td>
+                    <td ><p class="fw-bold">$100</p></td>
+                  </tr>
+                  <tr class="">
+                    <td class="fw-bold">Cheese Burger</td>
+                    <td> <p class="text-secondary">Prices: $5</p></td>
+                    <td><p class="text-secondary">QTY: 20</p></td>
+                    <td ><p class="fw-bold">$100</p></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 rounded-4 mt-4 mt-lg-">
+            <div class="col-12 bg-white rounded-4 p-4 shadow mt-5 mt-lg-4">
+                <p class="fw-bold">Quarterly revenue</p>
+                <div class=""> <canvas id="chart2"></canvas></div>   
+              </div>
+            <div class="col-12  mt-4 bg-white rounded-4 p-4 shadow ">
+              <p class="fw-bold">Quarterly revenue</p>
+              <div class=""><canvas id="myChart"></canvas></div>
+              
+            </div>   
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
